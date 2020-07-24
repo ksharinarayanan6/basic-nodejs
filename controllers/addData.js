@@ -15,15 +15,15 @@ exports.addData = (req, res, next) => {
   console.log(attributes);
   data.save().then(
     console.log("Data successfully inserted!"),
-    res.redirect("/data")
+    res.redirect("/display")
   );
 
 };
 
 exports.fetchData = (req, res, next) => {
   Data.find().then(data => {
-    res.render("data", {
-      data: data
-    })
+    res.json(data)
+  }).catch(err => {
+    console.log(err);
   });
 };
